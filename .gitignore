@@ -1,11 +1,18 @@
-# Python
+# Бэкенд
 venv/
 __pycache__/
 *.pyc
-db.sqlite3
+*.sqlite3
 .env
 
-# Node
+# Фронтенд
 node_modules/
-.env
+dist/
+build/
+.env.local
+.env.development.local
+
+# IDE и система
+.vscode/
+.idea/
 .DS_Store
