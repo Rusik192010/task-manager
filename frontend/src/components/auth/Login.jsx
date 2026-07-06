@@ -1,10 +1,9 @@
 import { useState } from "react"
-import api from '../api/api'
+import api from '../../api/api'
 
-function Register({ onRegister, showLogin }) {
+function Login({ onLogin }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [password2, setPassword2] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -12,28 +11,17 @@ function Register({ onRegister, showLogin }) {
         e.preventDefault()
         setError('')
 
-        if (username.trim() == '') {
-            setError('Заполните поле')
-        } else if (password.length < 8) {
-            setError('Пароль должен быть не менее 8 символов')
-        } else if (password !== password2) {
-            setError('Пароли должны совпадать')
-        }
-
         try {
             setLoading(true)
 
             const response = await api.post('api/token/', { username, password })
+
             localStorage.setItem('access_token', response.data.access)
             localStorage.setItem('refresh_token', response.data.refresh)
 
-            onRegister()
+            onLogin()
         } catch(err) {
-            if (err.response?.data?.username) {
-                setError('Пользователь с таким именем существует')
-            } else {
-                setError('Ошибка регистрации. Попробуйте позже.')
-            }
+            setError(`Неверный логин или пароль.`)
         } finally {
             setLoading(false)
         }
@@ -57,17 +45,10 @@ function Register({ onRegister, showLogin }) {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
             />
-            <input 
-                type="password" 
-                placeholder="Повторите пароль"
-                value={password2}
-                onChange={e => setPassword2(e.target.value)}
-            />
-            <button>Зарегистрироваться</button>
-            {error && <p>{error}</p>}
-            <button onClick={showLogin}>Уже зарегестрированы?</button>
+            <button>Войти</button>
+            {error && <p>Ошибка {error}</p>}
         </form>
     )
 }
 
-export default Register
+export default Login

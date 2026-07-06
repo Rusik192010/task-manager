@@ -7,12 +7,12 @@ const api = axios.create({
 
 // Проверка есть ли токен
 api.interceptors.request.use(
-    (confirm) => {
+    (config) => {
         const token = localStorage.getItem('access_token')
         if (token) {
-            confirm.headers.Authorization = `Bearer ${token}`
+            config.headers.Authorization = `Bearer ${token}`
         }
-        return confirm
+        return config
     },
     (error) => Promise.reject(error)
 )
@@ -21,7 +21,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => response,
     async (error) => {
-        originalRequest = error.config
+        const originalRequest = error.config
 
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true
@@ -36,7 +36,7 @@ api.interceptors.response.use(
                     refresh: refreshToken
                 })
 
-                const accessToken = (await response).data.accessToken
+                const accessToken = response.data.access
 
                 localStorage.setItem('access_token', accessToken)
 
