@@ -5,7 +5,6 @@
 [![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)](https://python.org)
 [![Django](https://img.shields.io/badge/Django-5.0-green?style=for-the-badge&logo=django)](https://djangoproject.com)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org)
-[![Tailwind](https://img.shields.io/badge/Tailwind-3-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 ---
@@ -18,12 +17,6 @@
 
 ---
 
-## 🚀 Демо
-
-> **Скоро будет доступно по ссылке**
-
----
-
 ## 📦 Стек технологий
 
 ### Бэкенд
@@ -32,7 +25,7 @@
 | Django | 5.0.x | Основной фреймворк |
 | Django REST Framework | 3.15.x | API-интерфейс |
 | Simple JWT | 5.4.x | JWT-авторизация |
-| SQLite / PostgreSQL | — | База данных |
+| SQLite | — | База данных |
 
 ### Фронтенд
 | Технология | Версия | Описание |
@@ -61,10 +54,9 @@
 
 ## 🛠️ Запуск проекта локально
 
-### 📥 Клонирование
+## backend
 
 ```bash
-#backend
 cd backend
 
 # Создание виртуального окружения
@@ -87,10 +79,10 @@ python manage.py createsuperuser
 
 # Запуск сервера
 python manage.py runserver
+```
 
-
-#frontend
-
+## frontend
+```
 cd frontend
 
 # Установка зависимостей
